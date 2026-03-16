@@ -4,8 +4,9 @@ const express = require("express");
 const axios = require("axios");
 const aws4 = require("aws4");
 const qs = require("qs");
-
 const app = express();
+
+const inventoryRoutes = require("./routes/inventoryRoutes");
 
 const catalogRoutes = require("./routes/catalogRoutes");
 
@@ -69,7 +70,11 @@ app.get("/amazonTest", async (req, res) => {
   }
 });
 
+
 app.use("/catalog", catalogRoutes);
+
+app.use("/api/inventory", inventoryRoutes);
+
 
 app.listen(5000, () => {
   console.log("Server running on port 5000");
